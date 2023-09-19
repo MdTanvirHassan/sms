@@ -1,15 +1,21 @@
+<style>
+    @media (min-width: 992px){
+        .bs-slider .carousel-inner {
+            height: 450px;
+        }}
+</style>
 <?php
 if (isset($banner_images) && !empty($banner_images)) {
     ?>
 
-    <div id="bootstrap-touch-slider" class="carousel bs-slider slide  control-round" data-ride="carousel" data-interval="5000">
+    <div id="bootstrap-touch-slider" class="carousel bs-slider slide  control-round container" data-ride="carousel" data-interval="5000">
         <div class="carousel-inner">
             <?php
             $banner_first = TRUE;
             foreach ($banner_images as $banner_img_key => $banner_img_value) {
                 ?>
                 <div class="item <?php if ($banner_first) echo 'active'; ?>">
-                    <img src="<?php echo base_url($banner_img_value->dir_path . $banner_img_value->img_name); ?>" alt="" />
+                    <img src="<?php echo base_url($banner_img_value->dir_path . $banner_img_value->img_name); ?>" alt=""  class="img-fluid d-block w-100 " style='height: 450px;'/>
                 </div>
                 <?php
                 $banner_first = FALSE;

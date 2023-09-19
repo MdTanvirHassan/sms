@@ -1,9 +1,9 @@
 <header>
-    <link href="<?php echo base_url(); ?>backend/toast-alert/toastr.css" rel="stylesheet" />
+<link href="<?php echo base_url(); ?>backend/toast-alert/toastr.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>backend/" rel="stylesheet" />
     <script src="<?php echo base_url(); ?>backend/toast-alert/toastr.js"></script>
     <link href="font/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style type="text/css">
         form .form-bottom button.btn {
@@ -685,30 +685,32 @@
         }
     </style>
 
-    <?php $currency_symbol = $this->customlib->getSchoolCurrencyFormat(); ?>
-    <div class="container">
-        <div class="row contents" style="justify-content: space-between;">
-            <div class="col-3 col-sm-3">
-                <a class="logo" href="<?php echo base_url(); ?>"><img
-                        src="<?php echo base_url($front_setting->logo); ?>" alt=""></a>
-            </div><!--./col-md-4-->
 
-            <div class="col-6 col-sm-6" style="text-align: center;">
+    <?php $currency_symbol = $this->customlib->getSchoolCurrencyFormat();?>
+    <div class="container">
+            <div class="row contents" style="justify-content: space-between;">
+                <div class="col-md-3 col-sm-3">
+                    <a class="logo" href="<?php echo base_url(); ?>"><img src="<?php echo base_url($front_setting->logo); ?>" alt=""></a>
+                </div><!--./col-md-4-->
+
+                <div class="col-md-6 col-sm-3" style="text-align: center;">
                 <h2 class='titles'>ফেমাস ইন্সটিটিউট হাই স্কুল</h2>
                 <span class='sub-title'>ব্রাহ্মন্দী,নরসিংদী</span><br>
                 <span class='sub-title'>স্থাপিত: 2003 , ইন নং ১৩৮৪৩৩</span>
-            </div>
-            <div class="col-3 col-sm-3" style="text-align: right;">
+                </div>
+                <div class="col-md-3 col-sm-3" style="text-align: right;">
 
-                <a class="logo logo-hide" href="<?php echo base_url(); ?>"><img
-                        src="<?php echo base_url(); ?>uploads/images/Board_of_Intermediate_and_Secondary_Education_Dhaka_Monogram.svg.png"
-                        alt=""></a>
-
-
-            </div><!--./col-md-8-->
-        </div><!--./row-->
-    </div><!--./container-->
-
+                
+                    
+                
+                    
+                    <a class="logo logo-hide" href="<?php echo base_url(); ?>"><img src="<?php echo base_url($front_setting->logo); ?>" alt=""></a>
+               
+                    
+                </div><!--./col-md-8-->
+            </div><!--./row-->
+        </div><!--./container-->
+    
     <div class="navborder">
         <div class="container">
             <div class="row">
@@ -726,7 +728,7 @@
                         <?php 
 if($layout_type){
 ?>
-  <ul class="nav navbar-nav" style='font-size: 14px;'>
+  <ul class="nav navbar-nav">
                             <?php
                             foreach ($main_menus as $menu_key => $menu_value) {
                             
@@ -819,44 +821,30 @@ if($layout_type){
         <div class="modal-content">
             <div class="modal-header modal-header-small">
                 <button type="button" class="close closebtnmodal" data-dismiss="modal">&times;</button>
-                <h4>
-                    <?php echo $this->lang->line('guest_registration') ?>
-                </h4>
+                <h4 ><?php echo $this->lang->line('guest_registration') ?></h4>
             </div>
-            <form action="<?php echo base_url() . 'course/guestsignup' ?>" method="post" class="signupform"
-                id="signupform">
+            <form action="<?php echo base_url() . 'course/guestsignup' ?>" method="post" class="signupform" id="signupform">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>
-                            <?php echo $this->lang->line('name'); ?>
-                        </label><small class="req"> *</small>
+                        <label><?php echo $this->lang->line('name'); ?></label><small class="req"> *</small>
                         <input type="text" class="form-control reg_name" name="name" id="name" autocomplete="off">
                         <span class="text-danger" id="error_refno"></span>
                     </div>
                     <div class="form-group mb10">
-                        <label>
-                            <?php echo $this->lang->line('email_id'); ?>
-                        </label><small class="req"> *</small>
-                        <input type="text" class="form-control reg_email" name="email" id="email" autocomplete="off">
+                        <label><?php echo $this->lang->line('email_id'); ?></label><small class="req"> *</small>
+                        <input type="text"  class="form-control reg_email"  name="email" id="email" autocomplete="off" >
                         <span class="text-danger" id="error_dob"></span>
                     </div>
                     <div class="form-group mb10">
-                        <label>
-                            <?php echo $this->lang->line('password'); ?>
-                        </label><small class="req"> *</small>
-                        <input type="password" class="form-control reg_password" name="password" id="password"
-                            autocomplete="off">
+                        <label><?php echo $this->lang->line('password'); ?></label><small class="req"> *</small>
+                        <input type="password"  class="form-control reg_password"  name="password" id="password" autocomplete="off" >
                         <span class="text-danger" id="error_dob"></span>
                     </div>
                     <div id="load_signup_captcha"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="modalclosebtn btn  mdbtn" onclick="openmodal()">
-                        <?php echo $this->lang->line('login'); ?>
-                    </button>
-                    <button type="submit" id="signupformbtn" class="onlineformbtn mdbtn">
-                        <?php echo $this->lang->line('signup'); ?>
-                    </button>
+                    <button type="button"  class="modalclosebtn btn  mdbtn" onclick="openmodal()"><?php echo $this->lang->line('login'); ?></button>
+                    <button type="submit" id="signupformbtn" class="onlineformbtn mdbtn" ><?php echo $this->lang->line('signup'); ?> </button>
                 </div>
             </form>
         </div>
@@ -875,66 +863,42 @@ if($layout_type){
             <form action="<?php echo site_url('course/guestlogin') ?>" method="post" class="loginform" id="loginform">
                 <div class="modal-body">
                     <div class="form-group mb10">
-                        <label>
-                            <?php echo $this->lang->line('email_id'); ?>
-                        </label><small class="req"> *</small>
-                        <input type="text" class="form-control login_email" name="username" id="username"
-                            autocomplete="off">
+                        <label><?php echo $this->lang->line('email_id'); ?></label><small class="req"> *</small>
+                        <input type="text"  class="form-control login_email"  name="username" id="username" autocomplete="off">
                         <span class="text-danger" id="error_dob"></span>
                     </div>
                     <div class="form-group mb10">
-                        <label>
-                            <?php echo $this->lang->line('password'); ?>
-                        </label><small class="req"> *</small>
-                        <input type="password" class="form-control login_password" name="password" id="password"
-                            autocomplete="off">
-                        <input type="hidden" class="form-control" name="checkout_status" id="checkout_status"
-                            autocomplete="off">
+                        <label><?php echo $this->lang->line('password'); ?></label><small class="req"> *</small>
+                        <input type="password"  class="form-control login_password"  name="password" id="password" autocomplete="off">
+                        <input type="hidden"  class="form-control"  name="checkout_status" id="checkout_status"  autocomplete="off" >
                         <span class="text-danger" id="error_dob"></span>
                     </div>
                     <div id="load_login_captcha"></div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="pull-left forgotbtn" data-toggle="modal" data-target="#forgotmodal"><i
-                            class="fa fa-key"></i>
-                        <?php echo $this->lang->line('forgot_password'); ?>
-                    </a>
+                    <a href="#" class="pull-left forgotbtn" data-toggle="modal" data-target="#forgotmodal"><i class="fa fa-key"></i> <?php echo $this->lang->line('forgot_password'); ?></a>
 
-                    <button type="button" class="signup modalclosebtn btn mdbtn" data-dismiss="modal">
-                        <?php echo $this->lang->line('signup'); ?>
-                    </button>
-                    <button type="submit" id="loginformbtn" class="onlineformbtn mdbtn">
-                        <?php echo $this->lang->line('submit'); ?>
-                    </button>
+                    <button type="button" class="signup modalclosebtn btn mdbtn" data-dismiss="modal"><?php echo $this->lang->line('signup'); ?> </button>
+                    <button type="submit" id="loginformbtn" class="onlineformbtn mdbtn" ><?php echo $this->lang->line('submit'); ?></button>
                 </div>
             </form>
-            <form action="<?php echo site_url('course/user_submit_login') ?>" method="post" class="gauthenticate-form"
-                id="gauthenticate-form">
+            <form action="<?php echo site_url('course/user_submit_login') ?>" method="post" class="gauthenticate-form" id="gauthenticate-form">
                 <div class="modal-body">
-
-                    <div class="form-group mb10">
+                   
+                  <div class="form-group mb10">
                         <label>Verification Code</label><small class="req"> *</small>
-                        <input type="text" class="form-control gauth_code" name="gauth_code" id="gauth_code"
-                            autocomplete="off">
-
+                        <input type="text"  class="form-control gauth_code"  name="gauth_code" id="gauth_code" autocomplete="off" >
+                       
                         <span class="text-danger" id="error_gauth_code"></span>
                     </div>
-
+                    
                 </div>
                 <div class="modal-footer">
 
-                    <a href="#" class="pull-left forgotbtn" data-toggle="modal" data-target="#forgotmodal"><i
-                            class="fa fa-key"></i>
-                        <?php echo $this->lang->line('forgot_password'); ?>
-                    </a>
+                    <a href="#" class="pull-left forgotbtn" data-toggle="modal" data-target="#forgotmodal"><i class="fa fa-key"></i> <?php echo $this->lang->line('forgot_password'); ?></a>
 
-                    <button type="button" class="signup modalclosebtn btn mdbtn" data-dismiss="modal">
-                        <?php echo $this->lang->line('signup'); ?>
-                    </button>
-                    <button type="submit" id="loginformbtn" class="onlineformbtn mdbtn"
-                        data-loading-text="<i class='fa fa-spinner fa-spin '></i> wait...">
-                        <?php echo $this->lang->line('submit'); ?>
-                    </button>
+                    <button type="button" class="signup modalclosebtn btn mdbtn" data-dismiss="modal"><?php echo $this->lang->line('signup'); ?> </button>
+                    <button type="submit" id="loginformbtn" class="onlineformbtn mdbtn" data-loading-text="<i class='fa fa-spinner fa-spin '></i> wait..."><?php echo $this->lang->line('submit'); ?></button>
 
 
 
@@ -955,21 +919,15 @@ if($layout_type){
             <form action="#" method="post" class="loginform" id="forgotform">
                 <div class="modal-body">
                     <div class="form-group mb10">
-                        <label>
-                            <?php echo $this->lang->line('email_id'); ?>
-                        </label><small class="req"> *</small>
+                        <label><?php echo $this->lang->line('email_id'); ?></label><small class="req"> *</small>
                         <input type="email" class="form-control" name="username" id="email" autocomplete="off">
                         <span class="text-danger" id="error_email"></span>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="modalclosebtn btn  mdbtn" onclick="openmodal()">
-                        <?php echo $this->lang->line('login'); ?>
-                    </button>
-
-                    <button type="submit" id="forgotformbtn" class="onlineformbtn mdbtn">
-                        <?php echo $this->lang->line('submit'); ?>
-                    </button>
+                    <button type="button"  class="modalclosebtn btn  mdbtn" onclick="openmodal()"><?php echo $this->lang->line('login'); ?></button>
+                    
+                    <button type="submit" id="forgotformbtn" class="onlineformbtn mdbtn" ><?php echo $this->lang->line('submit'); ?></button>
                 </div>
             </form>
         </div>
@@ -977,113 +935,36 @@ if($layout_type){
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('#myModal,#forgotmodal,#loginmodal').modal({
-            backdrop: 'static',
-            keyboard: false,
-            show: false
-        });
+$(document).ready(function () { 
+    $('#myModal,#forgotmodal,#loginmodal').modal({
+        backdrop: 'static',
+        keyboard: false,
+        show: false
     });
-</script>
+});
+</script> 
 <script>
 
-    $(document).on('change', '.currency_list', function (e) {
-        let currency_id = $(this).val();
-        $.ajax({
-            type: 'POST',
-            url: base_url + 'welcome/changeCurrencyFormat',
-            data: { 'currency_id': currency_id },
-            dataType: 'json',
-            beforeSend: function () {
-
-            },
-            success: function (data) {
-                window.location.reload();
-            },
-            error: function (xhr) { // if error occured
-
-            },
-            complete: function () {
-
-            }
-
-        });
+$(document).on('change','.currency_list',function(e){ 
+    let currency_id=$(this).val();
+    $.ajax({
+        type: 'POST',
+        url: base_url+'welcome/changeCurrencyFormat',
+        data: {'currency_id':currency_id},
+        dataType: 'json',
+        beforeSend: function() {
+             
+        },
+        success: function(data) {          
+            window.location.reload();
+        },
+        error: function(xhr) { // if error occured
+    
+        },
+        complete: function() {
+            
+        }
+     
     });
+});
 </script>
-
-
-<script>
-    $(document).ready(function () {
-
-        $('.testimonial-clients').slick({
-            centerMode: true,
-            centerPadding: '60px',
-            slidesToShow: 3,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 1
-                    }
-                }
-            ]
-        });
-
-        $('.teachers-sliders').slick({
-            centerMode: true,
-            centerPadding: '60px',
-            slidesToShow: 4,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 3
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: false,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 1
-                    }
-                }
-            ]
-        });
-    });
-
-
-</script>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-<script src="font/slick/slick.min.js" integrity="" crossorigin="anonymous"></script>
-<script src="js/custom.js" integrity="" crossorigin="anonymous"></script>

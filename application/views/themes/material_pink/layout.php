@@ -57,7 +57,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
-                        <div class="newscontent">
+                        <!-- <div class="newscontent">
                             <?php
                             if (in_array('news', json_decode($front_setting->sidebar_options))) {
                                 ?>
@@ -89,12 +89,13 @@
                                         </ul>
 
                                     </marquee>
-                                </div><!--./newscontent-->
+                                </div>
 
                                 <?php
                             }
                             ?>
-                        </div><!--./sidebar-->
+                        </div> -->
+                        <!--./sidebar-->
 
                     </div><!--./col-md-12-->
                 </div>
@@ -280,10 +281,10 @@
         }
         ?>
 
-        <div class="container spacet60">
+        <div class="container">
             <div class="row">
                 <?php
-                $page_colomn = "col-md-12 spacet60 pt-0-mobile";
+                $page_colomn = "col-md-12  pt-0-mobile";
 
                 if ($page_side_bar) {
 
@@ -298,7 +299,7 @@
                     ?>
 
                     <div class="col-md-3 col-sm-3">
-                        <div class="sidebar">
+                        <!-- <div class="sidebar">
                             <?php
                             if (in_array('news', json_decode($front_setting->sidebar_options))) {
                                 ?>
@@ -320,20 +321,22 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div><!--./newscontent-->
+                                </div>
 
                                 <?php
                             }
                             ?>
 
-                        </div><!--./sidebar-->
+                        </div> -->
+                        
                     </div>
                     <?php
                 }
                 ?>
 
 
-            </div><!--./row-->
+            </div>
+            <!--./row-->
         </div><!--./container-->
 
         <?php echo $footer; ?>
