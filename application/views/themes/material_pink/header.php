@@ -168,7 +168,7 @@ ul li a.nav-link {
                     
                 
                     
-                    <a class="logo logo-hide" href="<?php echo base_url(); ?>"><img src="<?php echo base_url($front_setting->logo); ?>" alt=""></a>
+                    <a class="logo logo-hide" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>uploads/images/Board_of_Intermediate_and_Secondary_Education_Dhaka_Monogram.svg.png" alt=""></a>
                
                     
                 </div><!--./col-md-8-->

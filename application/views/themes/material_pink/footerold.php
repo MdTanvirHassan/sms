@@ -1,21 +1,16 @@
-<section class="footer">
-    <div class="container">
+<?php $cookie_consent	=	$this->customlib->cookie_consent();
+if(!empty($cookie_consent)){ ?>
+<div id="cookieConsent" class="cookieConsent"> 
+    <?php echo $cookie_consent; ?> <a href="<?php echo base_url() . "page/cookie-policy" ?>" target="_blank" ></a> <a onclick="setsitecookies()" class="cookieConsentOK"><?php echo $this->lang->line('accept') ?></a>
+</div>
+<?php } ?>
+<footer>
+<?php if ($this->module_lib->hasModule('online_course') && $this->module_lib->hasActive('online_course')) { ?>        
+    <script src="<?php echo base_url(); ?>backend/js/online_course.js"></script>           
+<?php } ?>
+    <div class="container spacet40 spaceb40">
         <div class="row">
-            <div class="col-md-3">
-                <div class="left">
-                    <img src="<?php echo base_url($front_setting->logo); ?>" name="" alt="">
-                </div>
-            </div>
-            
-            <div class="col-md-3 col-sm-6">
-                <h3 class="fo-title"><?php echo $this->lang->line('follow_us'); ?></h3>
-                <ul class="company-social">
-                    <?php $this->view('/themes/default/social_media'); ?>        
-                </ul>
-            </div>
-            
-            <div class="col-md-6">
-                <div class="right-center">
+            <div class="col-md-4 col-sm-6">
                 <h3 class="fo-title"><?php echo $this->lang->line('links'); ?></h3>
                 <ul class="f1-list">
                     <?php
@@ -51,11 +46,27 @@
                         <?php
                     }
                     ?>
-                    </ul>
+                </ul>
+            </div><!--./col-md-3-->
+
+            <div class="col-md-4 col-sm-6">
+                <h3 class="fo-title"><?php echo $this->lang->line('follow_us'); ?></h3>
+                <ul class="company-social">
+                    <?php $this->view('/themes/default/social_media'); ?>        
+                </ul>
+            </div><!--./col-md-3-->
+
+            <div class="col-md-4 col-sm-6">
+                <h3 class="fo-title"><?php echo $this->lang->line('feedback'); ?></h3>
+                <div class="complain"><a href="<?php echo site_url('page/complain') ?>"><i class="fa fa-pencil-square-o i-plain"></i><?php echo $this->lang->line('complain'); ?></a>
                 </div>
-            </div>
-            
-        </div>
+
+<!-- <li><i class="fa fa-pencil-square-o i-plain"></i>
+          <div class="he-text"><?php echo $this->lang->line('feedback'); ?><span><a href="<?php echo site_url('page/complain') ?>"><?php echo $this->lang->line('complain'); ?></a></span>
+          </div>
+      </li> -->
+            </div>      
+        </div><!--./row-->
         <div class="row">
             <div class="col-md-12">
                 <div class="infoborderb"></div>   
@@ -96,10 +107,9 @@
                     <a class="twitter-timeline" data-tweet-limit="1" href="#"></a>
                 </div><!--./col-md-3-->   
             </div></div></div>
-</div>
-    </div>
-</section>
-<div class="small-footer">
+</div><!--./container-->
+
+<div class="copy-right">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12 text-center">
@@ -108,3 +118,32 @@
         </div><!--./row-->
     </div><!--./container-->
 </div><!--./copy-right-->
+
+</footer>
+<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+<script>
+    function setsitecookies() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>welcome/setsitecookies",
+            data: {},
+            success: function (data) {
+                $('.cookieConsent').hide();
+
+            }
+        });
+    }
+	
+	function check_cookie_name(name)
+    {
+        var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        if (match) {
+            console.log(match[2]);
+            $('.cookieConsent').hide();
+        }
+        else{
+           $('.cookieConsent').show();
+        }
+    }
+    check_cookie_name('sitecookies');
+</script>

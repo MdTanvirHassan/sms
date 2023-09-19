@@ -705,8 +705,9 @@ padding: 5px;
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <img src="images/history.jpg" name="" alt="" class="img-fluid image-size">
+                        <div class="col-4 col-sm-4">
+                        <img src="<?php echo base_url(); ?>uploads/images/history.jpg" class="img-fluid image-size" />
+                            <!-- <img src=" base_url(); ?>uploads/> -->
                         </div>
                         <div class="col-md-8">
                             <p>
@@ -740,7 +741,7 @@ padding: 5px;
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="images/21.00.40.jpg" name="" alt="" class="img-fluid">
+                            <img src="<?php echo base_url(); ?>uploads/images/21.00.40.jpg" name="" alt="" class="img-fluid">
                         </div>
                         <div class="col-md-8">
                             <p>
@@ -762,7 +763,7 @@ padding: 5px;
                                         <h5 class="mt-0">ছাত্রছাত্রীদের তথ্য</h5>
                                     </div>
                                     <div class="float-start">
-                                        <img src="images/menu01.jpg-copy-150x150.png" name="" alt="" class="align-self-center mr-3">
+                                        <img src="<?php echo base_url(); ?>uploads/images/menu01.jpg-copy-150x150.png" name="" alt="" class="align-self-center mr-3">
                                     </div>
                                     <div class="float-end">
                                         <ul>
@@ -783,7 +784,7 @@ padding: 5px;
                                         <h5 class="mt-0">শিক্ষকদের তথ্য</h5>
                                     </div>
                                     <div class="float-start">
-                                        <img src="images/te.png" name="" alt="" class="align-self-center mr-3">
+                                        <img src="<?php echo base_url(); ?>uploads/images/te.png" name="" alt="" class="align-self-center mr-3">
                                     </div>
                                     <div class="float-end">
                                         <ul>
@@ -804,7 +805,7 @@ padding: 5px;
                                         <h5 class="mt-0">ডাউনলোড</h5>
                                     </div>
                                     <div class="float-start">
-                                        <img src="images/do-150x150.png" name="" alt="" class="align-self-center mr-3">
+                                        <img src="<?php echo base_url(); ?>uploads/images/do-150x150.png" name="" alt="" class="align-self-center mr-3">
                                     </div>
                                     <div class="float-end">
                                         <ul>
@@ -825,7 +826,7 @@ padding: 5px;
                                         <h5 class="mt-0">একাডেমীক তথ্য</h5>
                                     </div>
                                     <div class="float-start">
-                                        <img src="images/ca-150x150.png" name="" alt="" class="align-self-center mr-3">
+                                        <img src="<?php echo base_url(); ?>uploads/images/ca-150x150.png" name="" alt="" class="align-self-center mr-3">
                                     </div>
                                     <div class="float-end">
                                         <ul>
@@ -936,7 +937,7 @@ padding: 5px;
                         <div class="testimonial-item col-md-4">
                             <div class=" clearfix">
                                 <div class="float-start">
-                                    <img src="images/15.07.00.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>uploads/images/15.07.00.jpg" alt="">
                                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                                 </div>
                                 <div class="float-end">
@@ -951,7 +952,7 @@ padding: 5px;
                         <div class="testimonial-item col-md-4">
                             <div class=" clearfix">
                                 <div class="float-start">
-                                    <img src="images/3.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>uploads/images/3.jpg" alt="">
                                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                                 </div>
                                 <div class="float-end">
@@ -966,7 +967,7 @@ padding: 5px;
                         <div class="testimonial-item col-md-4">
                             <div class=" clearfix">
                                 <div class="float-start">
-                                    <img src="images/2.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>uploads/images/2.jpg" alt="">
                                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                                 </div>
                                 <div class="float-end">
@@ -981,7 +982,7 @@ padding: 5px;
                         <div class="testimonial-item col-md-4">
                             <div class=" clearfix">
                                 <div class="float-start">
-                                    <img src="images/1.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>uploads/images/1.jpg" alt="">
                                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                                 </div>
                                 <div class="float-end">
@@ -995,7 +996,7 @@ padding: 5px;
                         <div class="testimonial-item col-md-4">
                             <div class=" clearfix">
                                 <div class="float-start">
-                                    <img src="images/4.jpg" alt="">
+                                    <img src="<?php echo base_url(); ?>uploads/images/4.jpg" alt="">
                                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                                 </div>
                                 <div class="float-end">
@@ -1025,7 +1026,7 @@ padding: 5px;
                     </div>
                     <div class="row achievements-items">
                         <div class="col-md-4 float-left">
-                            <img class="img-responsive" src="images/5.jpg" alt="">
+                            <img class="img-responsive" src="<?php echo base_url(); ?>uploads/images/5.jpg" alt="">
                         </div>
                         <div class="col-md-8 float-right">
                             <h5 class="mt-0">Media heading</h5>
@@ -1035,7 +1036,7 @@ padding: 5px;
                     </div>
                     <div class="row achievements-items">
                         <div class="col-md-4 float-left">
-                            <img class="img-responsive" src="images/5.jpg" alt="">
+                            <img class="img-responsive" src="<?php echo base_url(); ?>uploads/images/5.jpg" alt="">
                         </div>
                         <div class="col-md-8 float-right">
                             <h5 class="mt-0">Media heading</h5>
@@ -1045,7 +1046,7 @@ padding: 5px;
                     </div>
                     <div class="row achievements-items">
                         <div class="col-md-4 float-left">
-                            <img class="img-responsive" src="images/5.jpg" alt="">
+                            <img class="img-responsive" src="<?php echo base_url(); ?>uploads/images/5.jpg" alt="">
                         </div>
                         <div class="col-md-8 float-right">
                             <h5 class="mt-0">Media heading</h5>
@@ -1060,7 +1061,7 @@ padding: 5px;
                     </div>
                     <div class="row achievements-items">
                         <div class="col-md-4 float-left">
-                            <img class="img-responsive" src="images/5.jpg" alt="">
+                            <img class="img-responsive" src="<?php echo base_url(); ?>uploads/images/5.jpg" alt="">
                         </div>
                         <div class="col-md-8 float-right">
                             <h5 class="mt-0">Media heading</h5>
@@ -1070,7 +1071,7 @@ padding: 5px;
                     </div>
                     <div class="row achievements-items">
                         <div class="col-md-4 float-left">
-                            <img class="img-responsive" src="images/5.jpg" alt="">
+                            <img class="img-responsive" src="<?php echo base_url(); ?>uploads/images/5.jpg" alt="">
                         </div>
                         <div class="col-md-8 float-right">
                             <h5 class="mt-0">Media heading</h5>
@@ -1080,7 +1081,7 @@ padding: 5px;
                     </div>
                     <div class="row achievements-items">
                         <div class="col-md-4 float-left">
-                            <img class="img-responsive" src="images/5.jpg" alt="">
+                            <img class="img-responsive" src="<?php echo base_url(); ?>uploads/images/5.jpg" alt="">
                         </div>
                         <div class="col-md-8 float-right">
                             <h5 class="mt-0">Media heading</h5>
@@ -1110,7 +1111,7 @@ padding: 5px;
 
                         <div class="testimonial-item col-md-4">
                             <div class="techers-wrap">
-                                <img src="images/15.07.00.jpg" alt="">
+                                <img src="<?php echo base_url(); ?>uploads/images/15.07.00.jpg" alt="">
                                 <div class="teachers-dig">
                                     <h4>ROGER SCOTT</h4>
                                     <p>MARKETING MANAGER</p>
@@ -1121,19 +1122,7 @@ padding: 5px;
 
                         <div class="testimonial-item col-md-4">
                             <div class="techers-wrap">
-                                <img src="images/3.jpg" alt="">
-                                <div class="teachers-dig">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="testimonial-item col-md-4">
-                            <div class="techers-wrap">
-                                <img src="images/2.jpg" alt="">
+                                <img src="<?php echo base_url(); ?>uploads/images/3.jpg" alt="">
                                 <div class="teachers-dig">
                                     <h4>ROGER SCOTT</h4>
                                     <p>MARKETING MANAGER</p>
@@ -1145,7 +1134,19 @@ padding: 5px;
 
                         <div class="testimonial-item col-md-4">
                             <div class="techers-wrap">
-                                <img src="images/1.jpg" alt="">
+                                <img src="<?php echo base_url(); ?>uploads/images/2.jpg" alt="">
+                                <div class="teachers-dig">
+                                    <h4>ROGER SCOTT</h4>
+                                    <p>MARKETING MANAGER</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="testimonial-item col-md-4">
+                            <div class="techers-wrap">
+                                <img src="<?php echo base_url(); ?>uploads/images/1.jpg" alt="">
                                 <div class="teachers-dig">
                                     <h4>ROGER SCOTT</h4>
                                     <p>MARKETING MANAGER</p>
@@ -1156,7 +1157,7 @@ padding: 5px;
 
                         <div class="testimonial-item col-md-4">
                             <div class="techers-wrap">
-                                <img src="images/4.jpg" alt="">
+                                <img src="<?php echo base_url(); ?>uploads/images/4.jpg" alt="">
                                 <div class="teachers-dig">
                                     <h4>ROGER SCOTT</h4>
                                     <p>MARKETING MANAGER</p>
@@ -1166,7 +1167,7 @@ padding: 5px;
                         </div>
                         <div class="testimonial-item col-md-4">
                             <div class="techers-wrap">
-                                <img src="images/4.jpg" alt="">
+                                <img src="<?php echo base_url(); ?>uploads/images/4.jpg" alt="">
                                 <div class="teachers-dig">
                                     <h4>ROGER SCOTT</h4>
                                     <p>MARKETING MANAGER</p>
@@ -1184,61 +1185,7 @@ padding: 5px;
     </section>
 
 
-    <section class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="left">
-                        <img src="images/logo.png" name="" alt="">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="left-center">
-                        <h3>Address:</h3>
-                        <p>Sattar Jute Mills Model High School, Kanchan, Rupgonj, Narayangonj.</p>
-                        <ul>
-                            <li>Tel : 01717-232810</li>
-                            <li>Email: info@sjmmhs.com</li>
-                            <li> Web: sjmmhs.com</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="right-center">
-                        <ul>
-                            <li><a href="#">ই-বুক</a></li>
-                            <li><a href="#">শিক্ষক বাতায়ন</a></li>
-                            <li><a href="#">জাতীয় শিক্ষা বোর্ড</a></li>
-                            <li><a href="#">এসএসসি/এইচএসসি ফলাফল</a></li>
-                            <li><a href="#">মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর</a></li>
-                            <li><a href="#">মাল্টিমিডিয়া ক্লাসরুম ম্যানেজমেন্ট</a></li>
-                            <li><a href="#">বিদ্যালয়ের অফিসিয়াল ফেসবুক পেজ</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="right">
-                        <ul>
-                            <li><a href="#">ই-বুক</a></li>
-                            <li><a href="#">শিক্ষক বাতায়ন</a></li>
-                            <li><a href="#">জাতীয় শিক্ষা বোর্ড</a></li>
-                            <li><a href="#">এসএসসি/এইচএসসি ফলাফল</a></li>
-                            <li><a href="#">মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর</a></li>
-                            <li><a href="#">মাল্টিমিডিয়া ক্লাসরুম ম্যানেজমেন্ট</a></li>
-                            <li><a href="#">বিদ্যালয়ের অফিসিয়াল ফেসবুক পেজ</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="small-footer">
-        <div class="container">
-            <div class="col-md-12">
-                <p class="text-center">Copyrights <i class="fa fa-copyright"></i> 2010-23. All Rights Reserved By <a href="#">4axiz IT Ltd.</a></span></p>
-            </div>
-        </div>
-    </section>
+    
 
 
 
@@ -1247,7 +1194,8 @@ padding: 5px;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="font/slick/slick.min.js" integrity="" crossorigin="anonymous"></script>
+    <!-- <script src="font/slick/slick.min.js" integrity="" crossorigin="anonymous"></script> -->
+    <script src="<?php echo base_url(); ?>backend/font/slick/slick.min.js" integrity="" crossorigin="anonymous"></script> 
     <script src="js/custom.js" integrity="" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function(){
