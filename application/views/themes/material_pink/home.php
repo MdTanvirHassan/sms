@@ -1225,7 +1225,7 @@ margin-top: 30px;
                         }
                         ?>
 
-                        <!-- <div class="testimonial-item col-md-4">
+                        <div class="testimonial-item col-md-4">
                             <div class="techers-wrap">
                                 <img src="<?php echo base_url(); ?>uploads/images/15.07.00.jpg" alt="">
                                 <div class="teachers-dig">
@@ -1290,7 +1290,7 @@ margin-top: 30px;
                                 </div>
                             </div>
 
-                        </div> -->
+                        </div>
 
                     </div>
                 </div>
