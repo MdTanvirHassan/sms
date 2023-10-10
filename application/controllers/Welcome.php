@@ -14,6 +14,12 @@ class Welcome extends Front_Controller
         $this->load->library(array('mailer', 'form_builder', 'mailsmsconf'));
         $this->load->model(array('frontcms_setting_model', 'complaint_Model', 'Visitors_model', 'onlinestudent_model', 'filetype_model', 'customfield_model', 'setting_model', 'examgroupstudent_model', 'examgroup_model', 'grade_model', 'marksdivision_model', 'currency_model', 'section_model'));
         $this->load->model('examstudent_model');
+        $this->load->model('staff_model');
+        $this->load->model('student_model');
+        $this->load->model('class_model');
+        $this->load->model('subjecttimetable_model');
+        $this->load->model('examgroup_model');
+        $this->load->model('batchsubject_model');
         $this->blood_group = $this->config->item('bloodgroup');
         $this->load->library('Ajax_pagination');
         $this->load->library('module_lib');
@@ -47,7 +53,7 @@ class Welcome extends Front_Controller
         }
     }
 
-    public function index()
+    public function index($id=null)
     {
         $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
         $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
@@ -61,15 +67,23 @@ class Welcome extends Front_Controller
         $this->data['page_side_bar']  = $setting->is_active_sidebar;
         $this->data['cookie_consent'] = $setting->cookie_consent;
         $result                       = $this->cms_program_model->getByCategory($this->banner_content);
+      
         $this->data['page']           = $this->cms_page_model->getBySlug($home_page_slug);
         if (!empty($result)) {
             $this->data['banner_images'] = $this->cms_program_model->front_cms_program_photos($result[0]['id']);
+           
+            
         }
+        $this->data['staff'] = $this->staff_model->get_teacher($id);
+       
+        
+
         $this->data['setting_data'] = $setting_data;
+       
         $this->load_theme('home');
     }
 
-    public function page($slug)
+    public function page($slug,$id=null)
     {
         $page = $this->cms_page_model->getBySlug(urldecode($slug));
         if (!$page) {
@@ -81,6 +95,7 @@ class Welcome extends Front_Controller
         if ($page['is_homepage']) {
             redirect('frontend');
         }
+        $this->data['staff'] = $this->staff_model->getAll($id);
         $this->data['active_menu']       = $slug;
         $this->data['page_side_bar']     = $this->data['page']['sidebar'];
         $setting_data                    = $this->setting_model->get();
@@ -188,6 +203,449 @@ class Welcome extends Front_Controller
         }
 
         $this->load_theme('pages/page');
+    }
+
+    public function principle($id=null){
+        
+        $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+        $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+
+        reset($this->data['main_menus']);
+        $setting_data                 = $this->setting_model->get();
+        $first_key                    = key($this->data['main_menus']);
+        $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+        $setting                      = $this->frontcms_setting_model->get();
+        $this->data['active_menu']    = $home_page_slug;
+        $this->data['page_side_bar']  = $setting->is_active_sidebar;
+        $this->data['cookie_consent'] = $setting->cookie_consent;
+       
+        $this->data['teacher'] = $this->staff_model->get_principle($id);
+        // echo '<pre>'; print_r($this->data['teacher']); exit;
+       
+        
+
+        $this->data['setting_data'] = $setting_data;
+       
+        $this->load_theme('principle');
+
+
+    }
+
+    public function teacher($id=null){
+        
+        $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+        $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+
+        reset($this->data['main_menus']);
+        $setting_data                 = $this->setting_model->get();
+        $first_key                    = key($this->data['main_menus']);
+        $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+        $setting                      = $this->frontcms_setting_model->get();
+        $this->data['active_menu']    = $home_page_slug;
+        $this->data['page_side_bar']  = $setting->is_active_sidebar;
+        $this->data['cookie_consent'] = $setting->cookie_consent;
+       
+        $this->data['staff'] = $this->staff_model->getAll($id);
+       
+        
+
+        $this->data['setting_data'] = $setting_data;
+       
+        $this->load_theme('teacher');
+
+
+    }
+
+    public function managing_team($id=null){    
+        $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+        $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+
+        reset($this->data['main_menus']);
+        $setting_data                 = $this->setting_model->get();
+        $first_key                    = key($this->data['main_menus']);
+        $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+        $setting                      = $this->frontcms_setting_model->get();
+        $this->data['active_menu']    = $home_page_slug;
+        $this->data['page_side_bar']  = $setting->is_active_sidebar;
+        $this->data['cookie_consent'] = $setting->cookie_consent;
+       
+        $this->data['staff'] = $this->staff_model->getAll($id);
+       
+        
+
+        $this->data['setting_data'] = $setting_data;
+       
+        $this->load_theme('managing_team');
+    }
+
+    public function staff($id=null){    
+        $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+        $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+
+        reset($this->data['main_menus']);
+        $setting_data                 = $this->setting_model->get();
+        $first_key                    = key($this->data['main_menus']);
+        $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+        $setting                      = $this->frontcms_setting_model->get();
+        $this->data['active_menu']    = $home_page_slug;
+        $this->data['page_side_bar']  = $setting->is_active_sidebar;
+        $this->data['cookie_consent'] = $setting->cookie_consent;
+       
+        $this->data['staff'] = $this->staff_model->get_staff($id);
+       
+        
+
+        $this->data['setting_data'] = $setting_data;
+       
+        $this->load_theme('staff');
+    }
+
+    public function class_six($id=null){
+        
+            $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+            $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+    
+            reset($this->data['main_menus']);
+            $setting_data                 = $this->setting_model->get();
+            
+            $this->data['students'] = $this->student_model->count_students_by_class(1);
+            $this->data['students_sec'] = $this->student_model->count_students_by_class_section(1);
+            // echo '<pre>';print_r($this->data['students']);exit;
+    
+            $this->data['setting_data'] = $setting_data;
+           
+            $this->load_theme('class/class_six_ten');
+    
+    
+        }
+        public function class_seven($id=null){
+            $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+            $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+    
+            reset($this->data['main_menus']);
+            $setting_data                 = $this->setting_model->get();
+            $first_key                    = key($this->data['main_menus']);
+            $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+            $this->data['active_menu']    = $home_page_slug;         
+            
+            $this->data['students'] = $this->student_model->count_students_by_class(2);
+            $this->data['students_sec'] = $this->student_model->count_students_by_class_section(2);
+            // echo '<pre>';print_r($this->data['students']);exit;
+    
+            $this->data['setting_data'] = $setting_data;
+           
+            $this->load_theme('class/class_six_ten');
+        }
+
+        public function class_eight($id=null){
+        
+            $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+            $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+    
+            reset($this->data['main_menus']);
+            $setting_data                 = $this->setting_model->get();
+            
+            $this->data['students'] = $this->student_model->count_students_by_class(3);
+            $this->data['students_sec'] = $this->student_model->count_students_by_class_section(3);
+            // echo '<pre>';print_r($this->data['students']);exit;
+    
+            $this->data['setting_data'] = $setting_data;
+           
+            $this->load_theme('class/class_six_ten');
+    
+        }
+        public function class_nine($id=null){
+        
+            $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+            $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+    
+            reset($this->data['main_menus']);
+            $setting_data                 = $this->setting_model->get();
+            
+            $this->data['students'] = $this->student_model->count_students_by_class(4);
+            $this->data['students_sec'] = $this->student_model->count_students_by_class_section(4);
+            // echo '<pre>';print_r($this->data['students']);exit;
+    
+            $this->data['setting_data'] = $setting_data;
+           
+            $this->load_theme('class/class_six_ten');    
+        }
+
+        public function class_ten($id=null){
+        
+            $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+            $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+    
+            reset($this->data['main_menus']);
+            $setting_data                 = $this->setting_model->get();
+            
+            $this->data['students'] = $this->student_model->count_students_by_class(5);
+            $this->data['students_sec'] = $this->student_model->count_students_by_class_section(5);
+            // echo '<pre>';print_r($this->data['students']);exit;
+    
+            $this->data['setting_data'] = $setting_data;
+           
+            $this->load_theme('class/class_six_ten');
+    
+    
+        }
+
+        public function routine(){
+            $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+            $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+    
+            reset($this->data['main_menus']);
+            $setting_data                 = $this->setting_model->get();
+            $first_key                    = key($this->data['main_menus']);
+            $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+            $setting                      = $this->frontcms_setting_model->get();
+            $this->data['active_menu']    = $home_page_slug;
+            $this->data['page_side_bar']  = $setting->is_active_sidebar;
+            $this->data['cookie_consent'] = $setting->cookie_consent;
+           
+            $this->data['staff'] = $this->staff_model->getAll();
+            $this->data['setting_data'] = $setting_data;
+            $this->load_theme('routine');
+            
+        }
+    
+        
+        public function class_six_routine($id=null)
+        {
+            $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+            $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+    
+            reset($this->data['main_menus']);
+            $setting_data                 = $this->setting_model->get();
+            $this->data['setting_data'] = $setting_data;
+             $this->data['timetable'] = $this->subjecttimetable_model->get_routine();
+            //  echo '<pre>'; print_r($this->data['timetable']);exit;
+            
+
+
+            $this->load_theme('class_routine/class_time');
+        }
+
+        public function class_six_exam_routine($id=null)
+        {
+            $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+            $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+    
+            reset($this->data['main_menus']);
+            $setting_data                 = $this->setting_model->get();
+            $this->data['setting_data'] = $setting_data;
+             $this->data['timetable'] = $this->subjecttimetable_model->get_routine();
+            
+            $this->data['exam_subjects']   = $this->batchsubject_model->getExamRoutine();
+            //  $class                   = $this->class_model->get();
+            //  $data['classlist']       = $class;
+            //  $session                 = $this->session_model->get();
+            //  $data['sessionlist']     = $session;
+            //  $data['current_session'] = $this->sch_current_session;
+            //  echo '<pre>'; print_r($data['exam_subjects']);exit;
+            
+
+
+            $this->load_theme('class_routine/exam_schedule');
+        }
+        public function getExamByExamgroup()
+    {
+        $exam_group_id = $this->input->post('exam_group_id');
+        $data          = $this->examgroup_model->getExamByExamGroup($exam_group_id, true);
+        echo json_encode($data);
+    }
+
+
+    
+
+
+    public function ajaxsearch()
+    {
+        $search_type = $this->input->post('search_type');
+        if ($search_type == "search_filter") {
+            $this->form_validation->set_rules('class_id', $this->lang->line('class'), 'trim|required|xss_clean');
+        }
+
+        if ($this->form_validation->run() == false && $search_type == "search_filter") {
+            $error = array();
+            if ($search_type == "search_filter") {
+                $error['class_id'] = form_error('class_id');
+            }
+
+            $array = array('status' => 0, 'error' => $error);
+            echo json_encode($array);
+        } else {
+            $search_type = $this->input->post('search_type');
+            $search_text = $this->input->post('search_text');
+            $class_id    = $this->input->post('class_id');
+            $section_id  = $this->input->post('section_id');
+            $params      = array('class_id' => $class_id, 'section_id' => $section_id, 'search_type' => $search_type, 'search_text' => $search_text);
+            $array       = array('status' => 1, 'error' => '', 'params' => $params);
+            echo json_encode($array);
+        }
+    }
+
+    public function getByClassAndSection()
+    {
+        $class      = $this->input->get('class_id');
+        $section    = $this->input->get('section_id');
+        $resultlist = $this->student_model->searchByClassSection($class, $section);
+        foreach ($resultlist as $key => $value) {
+            $resultlist[$key]['full_name'] = $this->customlib->getFullName($value['firstname'], $value['middlename'], $value['lastname'], $this->sch_setting_detail->middlename, $this->sch_setting_detail->lastname);
+            # code...
+        }
+        echo json_encode($resultlist);
+    }
+
+    public function getByClassAndSectionExcludeMe()
+    {
+        $class      = $this->input->get('class_id');
+        $section    = $this->input->get('section_id');
+        $student_id = $this->input->get('current_student_id');
+        $resultlist = $this->student_model->searchByClassSectionWithoutCurrent($class, $section, $student_id);
+
+        foreach ($resultlist as $key => $value) {
+            $resultlist[$key]['full_name'] = $this->customlib->getFullName($value['firstname'], $value['middlename'], $value['lastname'], $this->sch_setting_detail->middlename, $this->sch_setting_detail->lastname);
+            # code...
+        }
+
+        echo json_encode($resultlist);
+    }
+
+    public function getStudentRecordByID()
+    {
+        $student_id = $this->input->get('student_id');
+        $resultlist = $this->student_model->get($student_id);
+
+        foreach ($resultlist as $key => $value) {
+
+            $resultlist['full_name'] = $this->customlib->getFullName($resultlist['firstname'], $resultlist['middlename'], $resultlist['lastname'], $this->sch_setting_detail->middlename, $this->sch_setting_detail->lastname);
+        }
+
+        echo json_encode($resultlist);
+    }
+
+    
+
+    public function admission_info($id=null){
+        
+        $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+        $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+
+        reset($this->data['main_menus']);
+        $setting_data                 = $this->setting_model->get();
+        $first_key                    = key($this->data['main_menus']);
+        $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+        $setting                      = $this->frontcms_setting_model->get();
+        $this->data['active_menu']    = $home_page_slug;
+        $this->data['page_side_bar']  = $setting->is_active_sidebar;
+        $this->data['cookie_consent'] = $setting->cookie_consent;
+        $this->data['teacher'] = $this->staff_model->get_principle($id);
+       
+        $this->data['setting_data'] = $setting_data;
+       
+        $this->load_theme('admission_info');
+
+
+    }
+    public function admission_form($id=null){
+        
+        $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+        $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+
+        reset($this->data['main_menus']);
+        $setting_data                 = $this->setting_model->get();
+        $first_key                    = key($this->data['main_menus']);
+        $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+        $setting                      = $this->frontcms_setting_model->get();
+        $this->data['active_menu']    = $home_page_slug;
+        $this->data['page_side_bar']  = $setting->is_active_sidebar;
+        $this->data['cookie_consent'] = $setting->cookie_consent;
+        $this->data['teacher'] = $this->staff_model->get_principle($id);
+       
+        $this->data['setting_data'] = $setting_data;
+       
+        $this->load_theme('admission_form');
+
+
+    }
+
+    public function notice($id=null){
+        
+        $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+        $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+
+        reset($this->data['main_menus']);
+        $setting_data                 = $this->setting_model->get();
+        $first_key                    = key($this->data['main_menus']);
+        $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+        $setting                      = $this->frontcms_setting_model->get();
+        $this->data['active_menu']    = $home_page_slug;
+        $this->data['page_side_bar']  = $setting->is_active_sidebar;
+        $this->data['cookie_consent'] = $setting->cookie_consent;
+        $ban_notice_type              = $this->config->item('ci_front_notice_content');
+        $this->data['banner_notices'] = $this->cms_program_model->getByCategory($ban_notice_type, array('start' => 0, 'limit' => 5)); 
+       
+        $this->data['staff'] = $this->staff_model->getAll($id);
+       
+        
+
+        $this->data['setting_data'] = $setting_data;
+       
+        $this->load_theme('notice');
+
+
+    }
+    public function contact($id=null){
+        
+        $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+        $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+
+        reset($this->data['main_menus']);
+        $setting_data                 = $this->setting_model->get();
+        $first_key                    = key($this->data['main_menus']);
+        $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+        $setting                      = $this->frontcms_setting_model->get();
+        $this->data['active_menu']    = $home_page_slug;
+        $this->data['page_side_bar']  = $setting->is_active_sidebar;
+        $this->data['cookie_consent'] = $setting->cookie_consent;
+        $ban_notice_type              = $this->config->item('ci_front_notice_content');
+        $this->data['banner_notices'] = $this->cms_program_model->getByCategory($ban_notice_type, array('start' => 0, 'limit' => 5)); 
+       
+        $this->data['staff'] = $this->staff_model->getAll($id);
+       
+        
+
+        $this->data['setting_data'] = $setting_data;
+       
+        $this->load_theme('contact');
+
+
+    }
+
+    public function class_routine($id=null){
+        
+        $menu_list                = $this->cms_menu_model->getBySlug('main-menu');
+        $this->data['main_menus'] = $this->cms_menuitems_model->getMenus($menu_list['id']);
+
+        reset($this->data['main_menus']);
+        $setting_data                 = $this->setting_model->get();
+        $first_key                    = key($this->data['main_menus']);
+        $home_page_slug               = $this->data['main_menus'][$first_key]['page_slug'];
+        $setting                      = $this->frontcms_setting_model->get();
+        $this->data['active_menu']    = $home_page_slug;
+        $this->data['page_side_bar']  = $setting->is_active_sidebar;
+        $this->data['cookie_consent'] = $setting->cookie_consent;
+       
+        $this->data['staff'] = $this->staff_model->getAll($id);
+       
+        
+
+        $this->data['setting_data'] = $setting_data;
+       
+        $this->load_theme('class_routine');
+
+
     }
 
     public function ajaxPaginationData()

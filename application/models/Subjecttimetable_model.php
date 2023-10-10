@@ -62,6 +62,33 @@ class Subjecttimetable_model extends MY_Model
         return $query->row();
     }
 
+    public function get_routine($id = null)
+{
+    $this->db->select('
+        subject_timetable.*,
+        subject_group_subjects.subject_id,
+        subjects.name AS subject_name,
+        subjects.code AS subject_code,
+        subjects.type AS subject_type
+    ');
+    $this->db->from('subject_timetable');
+    $this->db->join('subject_group_subjects', 'subject_timetable.subject_group_subject_id = subject_group_subjects.id');
+    $this->db->join('staff', 'staff.id = subject_timetable.staff_id');
+    $this->db->join('subjects', 'subjects.id = subject_group_subjects.subject_id');
+    
+    // if ($id !== null) {
+    //     $this->db->where('subject_timetable.id', $id);
+    // }
+    
+    $this->db->order_by('subject_timetable.day, subject_timetable.start_time');
+    
+    $query = $this->db->get();
+    // print_r($query->result() );exit;
+    return $query->result();
+}
+
+    
+
     public function getBySubjectGroupDayClassSection($subject_group_id, $day, $class_id, $section_id)
     {
         $this->db->select('subject_timetable.*');

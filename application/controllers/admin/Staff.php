@@ -647,8 +647,13 @@ class Staff extends Admin_Controller
             }
             //==========================
             if ($insert) {
+                
 
                 if (isset($_FILES["file"]) && !empty($_FILES['file']['name'])) {
+
+                    // echo 'test';
+                    // exit;
+                    
                     $img_name             = $this->media_storage->fileupload("file", "./uploads/staff_images/");
                     $data_insert['image'] = $img_name;
                 }

@@ -16,6 +16,7 @@ class Teacher extends Student_Controller
     public function index()
     {
 
+        echo "asdasd";exit;
         $this->session->set_userdata('top_menu', 'Teachers');
         $this->session->set_userdata('sub_menu', 'teacher/index');
         $data['title']      = 'Add Teacher';

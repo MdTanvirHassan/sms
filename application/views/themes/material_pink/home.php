@@ -677,7 +677,7 @@ margin-top: 30px;
 
 
 
-
+<div class="container" style="box-shadow: 5px 10px 25px #ccc;  ">
     <section class="title-section">
         <div class="container">
             <div class="row">
@@ -911,7 +911,24 @@ margin-top: 30px;
                         <h3>নোটিশ বোর্ড</h3>
                         <div class="content-notice p-1" style="color: #2873BD; font-size: 12px; overflow: hidden; background-color:#EBEBEB;">
                             <ul style="margin: 0; padding:0 15px!important; list-style: none; animation: scroll 15s linear infinite;">
-                                <li>
+                            <?php
+                                if (!empty($banner_notices)) {
+
+                                    foreach ($banner_notices as $banner_notice_key => $banner_notice_value) {
+                                        ?>
+                                        <li><a href="<?php echo site_url('read/' . $banner_notice_value['slug']) ?>">
+                                                <div class="datenews" style="color:green;">
+                                                    <?php
+                                                    echo date('d', strtotime($banner_notice_value['date'])) . " " . $this->lang->line(strtolower(date('F', strtotime($banner_notice_value['date'])))) . " " . date('Y', strtotime($banner_notice_value['date']));
+                                                    ?>
+                                                </div>
+                                                <?php echo $banner_notice_value['title']; ?>
+                                            </a></li>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                                <!-- <li>
                                     <a href="#">
                                         <span>◉ সাত্তার জুট মিলস মডেল উচ্চ
                                             বিদ্যালয়ের অফিসিয়াল ওয়েবসাইটে আপনাকে
@@ -942,7 +959,7 @@ margin-top: 30px;
                                         <span>◉ ১৬ আগস্ট স্কুল বন্ধ
                                             থাকিবে</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -984,8 +1001,47 @@ margin-top: 30px;
                     <div class="official-link">
                         <h3>গুরুত্বপূর্ণ তথ্য</h3>
                         <ul>
-                            <li><a href="#"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>ই-বুক</a></li>
-                            <li><a href="#"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>শিক্ষক
+                           
+
+                            <?php
+                                foreach ($footer_menus as $footer_menu_key => $footer_menu_value) {
+
+                                $cls_menu_dropdown = "";
+                                if (!empty($footer_menu_value['submenus'])) {
+
+                                    $cls_menu_dropdown = "dropdown";
+                                }
+                                ?>
+
+                            <li class="<?php echo $cls_menu_dropdown; ?>">
+                               
+                                    <?php
+                                    $top_new_tab = '';
+                                    $url = '#';
+                                    if ($footer_menu_value['open_new_tab']) {
+                                        $top_new_tab = "target='_blank'";
+                                    }
+                                    if ($footer_menu_value['ext_url']) {
+                                        $url = $footer_menu_value['ext_url_link'];
+                                    } else {
+                                        $url = site_url($footer_menu_value['page_url']);
+                                    }
+                                    ?>
+
+                                    <a href="<?php echo $url; ?>" <?php echo $top_new_tab; ?>>
+                                    <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                                        <?php echo $footer_menu_value['menu']; ?>
+                                    </a>
+
+                                <?php
+                                ?>
+
+
+                            </li>
+                            <?php
+                        }
+                        ?>
+                            <!-- <li><a href="#"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>শিক্ষক
                                     বাতায়ন</a></li>
                             <li><a href="#"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>জাতীয় শিক্ষা
                                     বোর্ড</a></li>
@@ -996,7 +1052,7 @@ margin-top: 30px;
                             <li><a href="#"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>মাল্টিমিডিয়া
                                     ক্লাসরুম ম্যানেজমেন্ট</a></li>
                             <li><a href="#"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>বিদ্যালয়ের
-                                    অফিসিয়াল ফেসবুক পেজ</a></li>
+                                    অফিসিয়াল ফেসবুক পেজ</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -1017,84 +1073,33 @@ margin-top: 30px;
                 <!-- offset-md-3 -->
                 <div class="col-md-12">
                     <div class="testimonial-clients teachers-bg">
+                    <?php
+                        if (!empty($staff)) {
+                            foreach ($staff as $teacher) {
+                              
+                                ?>
 
                         <div class="testimonial-item col-md-4">
                             <div class=" clearfix">
                                 <div class="float-start">
-                                    <img src="<?php echo base_url(); ?>uploads/images/15.07.00.jpg" alt="">
+                                <img src="<?php echo base_url('uploads/staff_images/' . $teacher['image']); ?>" alt="">
                                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                                 </div>
                                 <div class="float-end">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
+                                    <h4><?php echo $teacher['name']; ?></h4>
+                                    <p><?php echo $teacher['designation']; ?></p>
                                 </div>
                             </div>
                             <p class="testimonial-p">Far far away, behind the word mountains, far from the countries
                                 Vokalia and Consonantia, there live the blind texts.</p>
                         </div>
+                        <?php
+                            }
+                        }
+                        ?>
 
-
-                        <div class="testimonial-item col-md-4">
-                            <div class=" clearfix">
-                                <div class="float-start">
-                                    <img src="<?php echo base_url(); ?>uploads/images/3.jpg" alt="">
-                                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                                </div>
-                                <div class="float-end">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-                            <p class="testimonial-p">Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-
-
-                        <div class="testimonial-item col-md-4">
-                            <div class=" clearfix">
-                                <div class="float-start">
-                                    <img src="<?php echo base_url(); ?>uploads/images/2.jpg" alt="">
-                                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                                </div>
-                                <div class="float-end">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-                            <p class="testimonial-p">Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-
-
-                        <div class="testimonial-item col-md-4">
-                            <div class=" clearfix">
-                                <div class="float-start">
-                                    <img src="<?php echo base_url(); ?>uploads/images/1.jpg" alt="">
-                                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                                </div>
-                                <div class="float-end">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-                            <p class="testimonial-p">Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
-
-                        <div class="testimonial-item col-md-4">
-                            <div class=" clearfix">
-                                <div class="float-start">
-                                    <img src="<?php echo base_url(); ?>uploads/images/4.jpg" alt="">
-                                    <i class="fa fa-quote-left" aria-hidden="true"></i>
-                                </div>
-                                <div class="float-end">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-                            <p class="testimonial-p">Far far away, behind the word mountains, far from the countries
-                                Vokalia and Consonantia, there live the blind texts.</p>
-                        </div>
+                        
+   
 
                     </div>
                 </div>
@@ -1203,94 +1208,26 @@ margin-top: 30px;
                 <!-- offset-md-3 -->
                 <div class="col-md-12">
                     <div class="teachers-sliders">
-                        <?php
-                        if (!empty($staff_id)) {
-
-                            foreach ($staff_id as $staff) {
+                    <?php
+                        if (!empty($staff)) {
+                            foreach ($staff as $teacher) {
                                 ?>
                                 <div class="testimonial-item col-md-4">
                                     <div class="techers-wrap">
-                                        <img src="<?php echo base_url($staff->image); ?>" alt="">
+                                    <img src="<?php echo base_url('uploads/staff_images/' . $teacher['image']); ?>" alt="">
+
                                         <div class="teachers-dig">
-                                            <h4>
-                                                <?php echo $staff->name ?>
-                                            </h4>
-                                            <p>MARKETING MANAGER</p>
+                                            <h4><?php echo $teacher['name']; ?></h4>
+                                            <p><?php echo $teacher['designation']; ?></p> 
                                         </div>
                                     </div>
                                 </div>
-
                                 <?php
                             }
                         }
                         ?>
 
-                        <div class="testimonial-item col-md-4">
-                            <div class="techers-wrap">
-                                <img src="<?php echo base_url(); ?>uploads/images/15.07.00.jpg" alt="">
-                                <div class="teachers-dig">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="testimonial-item col-md-4">
-                            <div class="techers-wrap">
-                                <img src="<?php echo base_url(); ?>uploads/images/3.jpg" alt="">
-                                <div class="teachers-dig">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="testimonial-item col-md-4">
-                            <div class="techers-wrap">
-                                <img src="<?php echo base_url(); ?>uploads/images/2.jpg" alt="">
-                                <div class="teachers-dig">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div class="testimonial-item col-md-4">
-                            <div class="techers-wrap">
-                                <img src="<?php echo base_url(); ?>uploads/images/1.jpg" alt="">
-                                <div class="teachers-dig">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="testimonial-item col-md-4">
-                            <div class="techers-wrap">
-                                <img src="<?php echo base_url(); ?>uploads/images/4.jpg" alt="">
-                                <div class="teachers-dig">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="testimonial-item col-md-4">
-                            <div class="techers-wrap">
-                                <img src="<?php echo base_url(); ?>uploads/images/4.jpg" alt="">
-                                <div class="teachers-dig">
-                                    <h4>ROGER SCOTT</h4>
-                                    <p>MARKETING MANAGER</p>
-                                </div>
-                            </div>
-
-                        </div>
+                        
 
                     </div>
                 </div>
@@ -1299,6 +1236,8 @@ margin-top: 30px;
             </div>
         </div>
     </section>
+
+    </div>
 
 
 

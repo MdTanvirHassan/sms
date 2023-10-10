@@ -72,6 +72,84 @@ class Student_model extends MY_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+// prince
+    public function getStudentsByClass()
+{
+    $this->db->select('COUNT(*) as total_students,classes.id AS `class_id`,student_session.id as student_session_id,students.id,classes.class,sections.id AS `section_id`,sections.section,students.id,students.admission_no , students.roll_no,students.admission_date,students.firstname,students.middlename,  students.lastname,students.image,    students.mobileno, students.email ,students.state ,   students.city , students.pincode ,     students.religion,     students.dob ,students.current_address,    students.permanent_address,IFNULL(students.category_id, 0) as `category_id`,IFNULL(categories.category, "") as `category`,students.adhar_no,students.samagra_id,students.bank_account_no,students.bank_name, students.ifsc_code , students.guardian_name , students.guardian_relation,students.guardian_email,students.guardian_phone,students.guardian_address,students.is_active ,students.created_at ,students.updated_at,students.father_name,students.rte,students.gender,users.id as `user_tbl_id`,users.username,users.password as `user_tbl_password`,users.is_active as `user_tbl_active`,SUM(CASE WHEN students.gender = "Male" THEN 1 ELSE 0 END) AS male_count, SUM(CASE WHEN students.gender = "Female" THEN 1 ELSE 0 END) AS female_count')
+        ->from('students');
+        $this->db->join('student_session', 'student_session.student_id = students.id');
+        $this->db->join('classes', 'student_session.class_id = classes.id');
+        $this->db->join('sections', 'sections.id = student_session.section_id');
+        $this->db->join('categories', 'students.category_id = categories.id', 'left');
+        $this->db->join('users', 'users.user_id = students.id', 'left');
+        $this->db->where('student_session.session_id', $this->current_session);
+        $this->db->where('students.is_active', 'yes');
+        $this->db->where('users.role', 'student');
+        $this->db->order_by('students.id');
+        $query = $this->db->get();
+        return $query->result_array();
+}
+
+
+public function count_students_by_class($id=null)
+{
+    $this->db->select('COUNT(*) as total_students,
+        classes.id AS `class_id`,
+        student_session.id as student_session_id,
+        students.id,
+        classes.class,
+        sections.id AS `section_id`,
+        sections.section,
+        students.id AS student_id,
+        students.is_active,
+        students.rte,
+        students.gender,
+        SUM(CASE WHEN students.gender = "Male" THEN 1 ELSE 0 END) AS male_count,
+        SUM(CASE WHEN students.gender = "Female" THEN 1 ELSE 0 END) AS female_count')
+        ->from('students')
+        ->join('student_session', 'student_session.student_id = students.id')
+        ->join('classes', 'student_session.class_id = classes.id')
+        ->join('sections', 'sections.id = student_session.section_id')
+         ->join('users', 'users.user_id = students.id', 'left')
+        // ->where('student_session.session_id', $this->current_session)
+         ->where('students.is_active', 'yes')
+        ->where('users.role', 'student')
+        ->where('classes.id', $id)
+        ->order_by('students.id');
+
+    $query = $this->db->get();
+    return $query->result_array();
+}
+
+public function count_students_by_class_section($id)
+{
+    $this->db->select('
+        classes.class AS class_name,
+        sections.section AS section_name,
+        SUM(CASE WHEN students.gender = "Male" THEN 1 ELSE 0 END) AS male_count,
+        SUM(CASE WHEN students.gender = "Female" THEN 1 ELSE 0 END) AS female_count,
+        COUNT(*) AS total_students'
+    )
+        ->from('students')
+        ->join('student_session', 'student_session.student_id = students.id')
+        ->join('classes', 'student_session.class_id = classes.id')
+        ->join('sections', 'sections.id = student_session.section_id')
+        ->join('users', 'users.user_id = students.id', 'left')
+        // ->where('student_session.session_id', $this->current_session)
+        ->where('students.is_active', 'yes')
+        ->where('users.role', 'student')
+        ->where('classes.id', $id)
+        ->group_by('classes.class, sections.section')
+        ->order_by('classes.class, sections.section');
+
+    $query = $this->db->get();
+    return $query->result_array();
+}
+
+//end
+
+
+
 
     public function getAppStudents()
     {
@@ -511,7 +589,7 @@ class Student_model extends MY_Model
         return $query->row_array();
     }
 
-    public function search_student()
+    public function search_student($id=null)
     {
         $this->db->select('classes.id AS `class_id`,classes.class,sections.id AS `section_id`,sections.section,students.id,students.admission_no , students.roll_no,students.admission_date,students.firstname,students.middlename,  students.lastname,students.image,    students.mobileno, students.email ,students.state ,   students.city , students.pincode ,     students.religion,     students.dob ,students.current_address,    students.permanent_address,students.category_id,    students.adhar_no,students.samagra_id,students.bank_account_no,students.bank_name, students.ifsc_code , students.guardian_name , students.guardian_relation,students.guardian_phone,students.guardian_address,students.is_active ,students.created_at ,students.updated_at,students.father_name,students.father_phone,students.father_occupation,students.mother_name,students.mother_phone,students.mother_occupation,students.guardian_occupation')->from('students');
         $this->db->join('student_session', 'student_session.student_id = students.id');

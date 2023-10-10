@@ -46,6 +46,21 @@ class Batchsubject_model extends CI_Model
         return $result;
     }
 
+    public function getExamRoutine($id = null)
+    {
+       
+        $this->db->select('exam_group_class_batch_exam_subjects.*,subjects.name as `subject_name`,subjects.code as `subject_code`,subjects.type as `subject_type`')
+        ->from('exam_group_class_batch_exam_subjects');
+        $this->db->join('subjects', 'subjects.id = exam_group_class_batch_exam_subjects.subject_id');
+       
+        $this->db->order_by('exam_group_class_batch_exam_subjects.date_from', 'ASC');
+        $this->db->order_by('exam_group_class_batch_exam_subjects.time_from', 'ASC');
+        $query  = $this->db->get();
+        $result = $query->result();
+
+        return $result;
+    }
+
     public function getExamstudentSubjects($id = null)
     {
         $this->db->select('exam_group_class_batch_exam_subjects.*,subjects.name as `subject_name`,subjects.code as `subject_code`,subjects.type as `subject_type`')->from('exam_group_class_batch_exam_subjects');

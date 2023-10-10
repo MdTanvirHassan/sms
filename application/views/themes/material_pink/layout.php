@@ -284,7 +284,7 @@
         <div class="container">
             <div class="row">
                 <?php
-                $page_colomn = "col-md-12  pt-0-mobile";
+                $page_colomn = "";
 
                 if ($page_side_bar) {
 

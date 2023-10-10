@@ -2,6 +2,8 @@
     <link href="<?php echo base_url(); ?>backend/toast-alert/toastr.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>backend/" rel="stylesheet" />
     <script src="<?php echo base_url(); ?>backend/toast-alert/toastr.js"></script>
+    <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
+
     <link href="font/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
@@ -24,7 +26,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
+            font-family: 'SolaimanLipi', Arial, sans-serif !important;
             font-weight: 400;
             font-size: 16px;
             font-size: 1rem;
@@ -279,12 +281,12 @@
 
         .footer {
             background-color: #034F72;
-            padding: 100px 0;
+            padding: 4% 0%!important;
         }
 
         .footer .left img {
             width: 150px;
-            margin: 5px 0;
+            margin: auto;
         }
 
         .footer .left-center h3 {
@@ -686,8 +688,8 @@
     </style>
 
     <?php $currency_symbol = $this->customlib->getSchoolCurrencyFormat(); ?>
-    <div class="container">
-        <div class="row contents" style="justify-content: space-between;">
+    <div class="container" style="box-shadow: 5px 10px 25px #ccc;  ">
+        <div class="contents " style="justify-content: space-between;  ">
             <div class="col-3 col-sm-3">
                 <a class="logo" href="<?php echo base_url(); ?>"><img
                         src="<?php echo base_url($front_setting->logo); ?>" alt=""></a>
